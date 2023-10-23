@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 
 # Create your models here.
@@ -19,3 +20,18 @@ class PC(models.Model):
     def __str__(self):
         return self.nome
 
+
+class Produto(models.Model):
+    nome = models.CharField(max_length=100, help_text='Nome')
+    descricao = models.CharField(max_length=100, help_text='Descrição')
+    preco = models.FloatField(max_length=100, help_text='Preço')
+
+    def __str__(self):
+        return self.nome
+
+class InstanciaProduto(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID do produto')
+    produto = models.ForeignKey('Produto', on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.produto.nome
