@@ -14,3 +14,7 @@ class PC(models.Model):
     fonte = models.CharField(max_length=100, help_text='Fonte')
     gabinete = models.CharField(max_length=100, help_text='Gabinete')
     preco = models.IntegerField()
+    imagem = models.ImageField(upload_to='product_images_PC')
+
+    def __str__(self):
+        return self.nome
