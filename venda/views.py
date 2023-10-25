@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from django.views import generic
-from .models import PC
+from django.views.generic import ListView
+from .models import PC, Produto
 
 
 # Create your views here.
-class HomePageView(generic.ListView):
-    model = PC
+class HomePageView(ListView):
+    model = Produto
     paginate_by = 10
+
+    def get_queryset(self):
+        return Produto.objects.filter(categoria__exact='c').order_by('preco')

@@ -1,6 +1,6 @@
-from venda import views
-from django.urls import path, include
+from .views import HomePageView
+from django.urls import path
 
 urlpatterns = [
-    path('home/', views.HomePageView.as_view, name='home')
+    path('', HomePageView.as_view(), name='home')
 ]

@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Lista de PCs</h1>
+<p>
+    {% for pc in produto_list %}
+    <h2>{{ pc.nome }}</h2>
+    {% endfor %}
+
+</p>
+{% endblock %}
