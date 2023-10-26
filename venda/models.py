@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 import uuid
 
 
@@ -23,6 +24,8 @@ class Produto(models.Model):
     def __str__(self):
         return self.nome
 
+    def get_absolute_url(self):
+        return reverse('product-detail', args=[str(self.id)])
 
 class PC(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID')

@@ -4,7 +4,7 @@
 <h1>Lista de PCs</h1>
 <p>
     {% for pc in produto_list %}
-    <h2>{{ pc.nome }}</h2>
+    <li><a href="{{ pc.get_absolute_url }}">{{ pc.nome }}</a></li>
     {% endfor %}
 
 </p>

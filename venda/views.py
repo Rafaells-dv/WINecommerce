@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import PC, Produto
 
 
@@ -9,3 +9,7 @@ class HomePageView(ListView):
 
     def get_queryset(self):
         return Produto.objects.filter(categoria__exact='c').order_by('preco')
+
+
+class ProductDetailView(DetailView):
+    model = Produto
