@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='produto',
             name='imagem',
-            field=models.ImageField(default='Sem imagem', upload_to='product_images_PC'),
+            field=models.ImageField(default='Sem imagem', upload_to='static'),
         ),
     ]

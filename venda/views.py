@@ -13,3 +13,4 @@ class HomePageView(ListView):
 
 class ProductDetailView(DetailView):
     model = Produto
+

@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('fonte', models.CharField(help_text='Fonte', max_length=100)),
                 ('gabinete', models.CharField(help_text='Gabinete', max_length=100)),
                 ('preco', models.IntegerField()),
-                ('imagem', models.ImageField(upload_to='product_images_PC')),
+                ('imagem', models.ImageField(upload_to='static')),
             ],
         ),
     ]

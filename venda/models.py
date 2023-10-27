@@ -8,7 +8,7 @@ class Produto(models.Model):
     nome = models.CharField(max_length=100, help_text='Nome')
     descricao = models.CharField(max_length=100, help_text='Descrição')
     preco = models.FloatField(max_length=100, help_text='Preço')
-    imagem = models.ImageField(upload_to='product_images_PC', default='Sem imagem')
+    imagem = models.ImageField(upload_to='images', default='Sem imagem')
 
     CATEGORIAS = (
         ('c', 'Computador'),
@@ -26,6 +26,31 @@ class Produto(models.Model):
 
     def get_absolute_url(self):
         return reverse('product-detail', args=[str(self.id)])
+
+    def pecas_pc(self):
+        valores = PC.objects.filter(produto__nome__icontains=self.nome).values()
+        valores = valores[0]
+
+        gpu = valores['gpu']
+        cpu = valores['cpu']
+        fonte = valores['fonte']
+        cooler = valores['cooler']
+        armazenamento = valores['armazenamento']
+        gabinete = valores['gabinete']
+        ram = valores['memoria_ram']
+        motherboard = valores['motherboard']
+
+        pecas = {
+            'gpu': gpu,
+            'cpu': cpu,
+            'fonte': fonte,
+            'cooler': cooler,
+            'armazenamento': armazenamento,
+            'gabinete': gabinete,
+            'ram': ram,
+            'motherboard': motherboard,
+        }
+        return pecas
 
 class PC(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID')
