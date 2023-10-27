@@ -4,9 +4,7 @@
   <h1>Title: {{ produto.nome }}</h1>
   <img style="width: 245px; height: 247px" src="{{ produto.imagem.url }}"/>
   <h2>Configuração</h2>
-  <ul>
-    {% for chave, produto in produto.pecas_pc.items %}
-    <li>{{ chave }}: {{ produto }}</li>
-    {% endfor %}
-  </ul>
+  {% for chave, produto in produto.pecas_pc.items %}
+  <h3>- {{ chave }}: {{ produto }}</h3>
+  {% endfor %}
 {% endblock %}}
