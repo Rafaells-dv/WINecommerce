@@ -1,10 +1,11 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Lista de PCs</h1>
+<h1>PCs</h1>
 <p>
     {% for pc in produto_list %}
     <li><a href="{{ pc.get_absolute_url }}">{{ pc.nome }}</a></li>
+    <img src="{{ pc.imagem.url }}"/>
     {% endfor %}
 
 </p>
