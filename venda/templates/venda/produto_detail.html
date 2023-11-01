@@ -1,10 +1,14 @@
 {% extends "base_generic.html" %}
-
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+{% endblock %}
 {% block content %}
   <h1>{{ produto.nome }}</h1>
   <img style="width: 245px; height: 247px" src="{{ produto.imagem.url }}"/>
   <h2>Configuração</h2>
   {% for chave, produto in produto.pecas_pc.items %}
+
   <h3>- {{ chave }}: {{ produto }}</h3>
   {% endfor %}
 {% endblock %}}

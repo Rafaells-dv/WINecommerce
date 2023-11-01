@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from .models import PC, Produto
+from .models import Produto
 
 
 # Create your views here.
