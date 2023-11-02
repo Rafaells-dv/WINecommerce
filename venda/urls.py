@@ -5,5 +5,5 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
-    path('product/<int:pk>', ProductDetailView.as_view(), name='product-detail')
+    path('product/<int:pk>', ProductDetailView.as_view(), name='product-detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

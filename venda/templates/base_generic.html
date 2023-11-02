@@ -19,7 +19,7 @@
       <a class="navbar-brand" href="{% url 'home' %}">
         <img src="/media/logopreta.png" alt="" width="30" height="30" >
       </a>
-      <a href="">Login</a>
+      <a href="{% url 'login' %}?next={{request.path}}">Login</a>
     </div>
   </nav>
     <div style="text-align: center;" class="container">
