@@ -14,8 +14,7 @@
     {% endif %}
 
     {% if next %}
-      {% if user.is_authenticated %}
-      {% else %}
+      {% if not user.is_authenticated %}
           <p>Por favor logue para ter acesso a essa página.</p>
       {% endif %}
     {% endif %}
@@ -37,5 +36,6 @@
       </form>
 
       {# Assumes you setup the password_reset view in your URLconf #}
-      <p><a href="">Esqueceu sua senha?</a></p>
+      <p><a href="">Esqueceu sua senha?</a><a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+
 {% endblock %}
