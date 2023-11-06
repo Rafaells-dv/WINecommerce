@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 {% endblock %}
 {% block content %}
+<div class="containerProduto">
   <h1>{{ produto.nome }}</h1>
   <img style="width: 245px; height: 247px" src="{{ produto.imagem.url }}"/>
   <h2>Configuração</h2>
@@ -11,4 +12,7 @@
 
   <h3>- {{ chave }}: {{ produto }}</h3>
   {% endfor %}
-{% endblock %}}
+  <h3>Preço: R${{ produto.preco }}</h3>
+  <button value="{{ produto.id }}">Comprar</button>
+</div>
+{% endblock %}

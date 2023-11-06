@@ -52,6 +52,7 @@ class Produto(models.Model):
         }
         return pecas
 
+
 class PC(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID')
     produto = models.ForeignKey('Produto', on_delete=models.SET_NULL, null=True)
@@ -63,6 +64,24 @@ class PC(models.Model):
     cooler = models.CharField(max_length=100, help_text='Sistema de resfriamento')
     fonte = models.CharField(max_length=100, help_text='Fonte')
     gabinete = models.CharField(max_length=100, help_text='Gabinete')
+
+    def __str__(self):
+        return self.produto.nome
+
+
+class Carrinho(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class ItemCarrinho(models.Model):
+    produto = models.ForeignKey('Produto', on_delete=models.CASCADE, related_name='itens')
+    carrinho = models.ForeignKey('Carrinho', on_delete=models.CASCADE, related_name='itenscarrinho')
+    quantidade = models.IntegerField(default=0)
 
     def __str__(self):
         return self.produto.nome
