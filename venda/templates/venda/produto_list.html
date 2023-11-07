@@ -1,20 +1,21 @@
 {% extends "base_generic.html" %}
+
 {% block head %}
 {% endblock %}
+
 {% block content %}
-<h1>Linha Gamer</h1>
-
+<h1 class="container">Linha Gamer</h1>
+<div class="grid-container-element">
     {% for pc in produto_list %}
-    <main id="boxes">
-    <a href="{{ pc.get_absolute_url }}">
-    <div class="container">
-        <img src="{{ pc.imagem.url }}" width="800" height="825" id="lista_imagem_produto"/>
-        <div class="centered">
-            {{ pc.nome }}
-        </div>
+    <div class="grid-child-element">
+            <a href="{{ pc.get_absolute_url }}">
+                <div class="produto">
+                    <img src="{{ pc.imagem.url }}" width="451" height="825" id="lista_imagem_produto"/>
+                    <div class="centered">{{ pc.nome }}</div>
+                </div>
+            </a>
     </div>
-    </a>
-    </main>
-    {% endfor %}
 
+    {% endfor %}
+</div>
 {% endblock %}
