@@ -6,10 +6,20 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import json
 
+
 # Create your views here.
 def carrinho(request):
-    context = {}
-    return render(request, "carrinho.html", context)
+    carrinho = None
+    itenscarrinho = []
+
+    if request.user.is_authenticated:
+        carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
+        itenscarrinho = carrinho.itenscarrinho.all()
+
+    context = {"carrinho":carrinho, "itens":itenscarrinho}
+    return render(request, "venda/carrinho.html", context)
+
+
 def add_to_carrinho(request):
     data = json.loads(request.body)
     id_produto = data["id"]

@@ -13,6 +13,6 @@
   <h3>- {{ chave }}: {{ produto }}</h3>
   {% endfor %}
   <h3>Preço: R${{ produto.preco }}</h3>
-  <button value="{{ produto.id }}">Comprar</button>
+  <a href="{% url 'carrinho' %}"><button value="{{ produto.id }}">Comprar</button></a>
 </div>
 {% endblock %}

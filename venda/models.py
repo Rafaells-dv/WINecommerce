@@ -85,3 +85,8 @@ class ItemCarrinho(models.Model):
 
     def __str__(self):
         return self.produto.nome
+
+    @property
+    def total(self):
+        total = self.produto.preco * self.quantidade
+        return total

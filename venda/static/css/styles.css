@@ -1,9 +1,16 @@
 /* Container holding the image and the text */
-.container {
-  position: relative;
-  text-align: center;
-  color: white;
+.container-car {
+    color: black;
+    margin-right: auto;
+    margin-left: auto;
+    align-content: center;
 }
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
 .produto {
   position: relative;
   text-align: center;
@@ -11,6 +18,31 @@
   padding: 0px ;
   font-family: 'Lucida Grande', Arial, sans-serif;
   font-weight: bold;
+}
+
+.grid-carrinho-element-title {
+    display: grid;
+    border-radius: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: lightgray;
+    grid-gap: 5px;
+    border: 1px solid black;
+    width: 50%;
+    margin-top: 50px;
+}
+
+.grid-carrinho-element {
+    display: grid;
+    border-radius: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: lightgray;
+    grid-gap: 5px;
+    border: 1px solid black;
+    width: 50%;
+}
+.grid-child-carrinho {
+    width: 80%;
+    margin: 10px;
 }
 
 .grid-container-element {
@@ -33,10 +65,10 @@
   transform: translate(-50%, -50%);
 }
 
-
 #lista_imagem_produto {
   opacity: 0.3;
 }
+
 #lista_imagem_produto:hover {
   opacity: 1.0;
 }
