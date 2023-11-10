@@ -77,6 +77,10 @@ class Carrinho(models.Model):
     def __str__(self):
         return str(self.id)
 
+    def get_itens_carrinho(self):
+        itens = self.itenscarrinho.objects.all()
+        total = len(itens)
+        return total
 
 class ItemCarrinho(models.Model):
     produto = models.ForeignKey('Produto', on_delete=models.CASCADE, related_name='itens')
