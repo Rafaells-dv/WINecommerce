@@ -19,6 +19,22 @@ def carrinho(request):
     context = {"carrinho":carrinho, "itens":itenscarrinho}
     return render(request, "venda/carrinho.html", context)
 
+def index(request):
+    produtos = Produto.objects.filter(categoria__icontains="c")
+
+    if request.user.is_authenticated:
+        carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
+    context = {"produtos":produtos, "carrinho":carrinho}
+
+    return render(request, "index.html", context)
+
+def num_carrinho(request):
+    if request.user.is_authenticated:
+        carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
+
+    context = {"carrinho":carrinho}
+    return render(request, "base_generic.html", context)
+
 
 def add_to_carrinho(request):
     data = json.loads(request.body)
@@ -33,13 +49,6 @@ def add_to_carrinho(request):
         print(itemcarrinho)
 
     return JsonResponse("Funcionando", safe=False)
-
-class HomePageView(ListView):
-    model = Produto
-    paginate_by = 3
-
-    def get_queryset(self):
-        return Produto.objects.filter(categoria__exact='c').order_by('preco')
 
 
 class ProductDetailView(DetailView):

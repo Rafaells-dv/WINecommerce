@@ -1,12 +1,9 @@
 {% extends "base_generic.html" %}
 
-{% block head %}
-{% endblock %}
-
 {% block content %}
         <section id="linha-gamer">
             <div class="row g-0 p-0 row-cols-1 row-cols-lg-3">
-                {% for pc in produto_list %}
+                {% for pc in produtos %}
                     <div class="produto">
                         <img src="{{ pc.imagem.url }}" width="100%" height="100%" id="lista_imagem_produto"/>
                         <div class="centered">{{ pc.nome }}</div>
@@ -14,7 +11,7 @@
                 {% endfor %}
             </div>
         </section>
-        {% for pc in produto_list %}
+        {% for pc in produtos %}
             {% if forloop.counter != 2 %}
                 <section>
                         <div id="pc1" class="row g-0 row-cols-2">
@@ -22,9 +19,10 @@
                                 <img id="imagem_produto_especs" src="{{ pc.imagem.url }}" height="600px" width="100%">
                             </div>
                             <div class="container text-description">
-                                <div class="text-end">
+                                <div class="container pt-5 pe-5 text-end">
                                     <h2>{{ pc.nome }}</h2>
                                     <p>{{ pc.descricao }}</p>
+                                    <a href="{{ pc.get_absolute_url }}"><button type="button" class="btn btn-dark">A partir de: R${{pc.preco}}</button></a>
                                 </div>
                             </div>
                         </div>
@@ -33,9 +31,10 @@
                 <section>
                     <div id="pc1" class="row g-0 row-cols-2">
                         <div class="container text-description">
-                            <div class="text-start">
+                            <div class="container pt-5 ps-5 text-start">
                                 <h2>{{ pc.nome }}</h2>
                                 <p>{{ pc.descricao }}</p>
+                                <a href="{{ pc.get_absolute_url }}"><button type="button" class="btn btn-dark">A partir de: R${{pc.preco}}</button></a>
                             </div>
                         </div>
                         <div style="background-color: black;">

@@ -1,18 +1,18 @@
 {% extends "base_generic.html" %}
-{% block head %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-{% endblock %}
 {% block content %}
-<div class="produto">
-  <h1>{{ produto.nome }}</h1>
-  <img style="width: 245px; height: 247px" src="{{ produto.imagem.url }}"/>
-  <h2>Configuração</h2>
-  {% for chave, produto in produto.pecas_pc.items %}
+<div class="d-flex flex-column align-items-center p-2 bd-highlight">
+  <div class="">
+    <h1>{{ produto.nome }}</h1>
+    <img style="width: 245px; height: 247px" src="{{ produto.imagem.url }}"/>
+  </div>
+  <div class="align-self-start px-5 my-5">
+    <h2>Configuração</h2>
+    {% for chave, produto in produto.pecas_pc.items %}
 
-  <h3>- {{ chave }}: {{ produto }}</h3>
-  {% endfor %}
-  <h3>Preço: R${{ produto.preco }}</h3>
-  <a href="{% url 'carrinho' %}"><button value="{{ produto.id }}">Comprar</button></a>
+    <h3>- {{ chave }}: {{ produto }}</h3>
+    {% endfor %}
+    <h3>Preço: R${{ produto.preco }}</h3>
+    <a href="{% url 'carrinho' %}"><button value="{{ produto.id }}">Comprar</button></a>
+  </div>
 </div>
 {% endblock %}
