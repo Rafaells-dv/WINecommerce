@@ -12,7 +12,7 @@
             </div>
         </section>
         {% for pc in produtos %}
-            {% if forloop.counter != 2 %}
+            {% if forloop.counter|divisibleby:2 %}
                 <section>
                         <div id="pc1" class="row g-0 row-cols-2">
                             <div style="background-color: black;">

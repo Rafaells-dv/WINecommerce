@@ -1,26 +1,110 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<h1 style="text-align: center; color: white">Carrinho</h1>
-<div class="grid-carrinho-element-title container">
-    <div class="grid-child-carrinho container-car"></div>
-    <div class="grid-child-carrinho container-car">Nome</div>
-    <div class="grid-child-carrinho container-car">Quantidade</div>
-    <div class="grid-child-carrinho container-car">Preço</div>
-    <div class="grid-child-carrinho container-car">Total</div>
-</div>
-<div class="grid-carrinho-element centered">
-{% for item in itens %}
-    <div class="grid-child-carrinho">
-        <img style="width: 70px; height: 70px;" src="{{ item.produto.imagem.url }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+<div class="container">
+<div class="contentbar">
+        <!-- Start row -->
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="card my-5">
+                    <div class="card-header">
+                        <h5 class="card-title">Carrinho</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10 col-xl-8">
+                                <div class="cart-container">
+                                    <div class="cart-head">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Ação</th>
+                                                        <th scope="col">Foto</th>
+                                                        <th scope="col">Produto</th>
+                                                        <th scope="col">Qntd.</th>
+                                                        <th scope="col">Preço</th>
+                                                        <th scope="col" class="text-right">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for item in itens %}
+                                                    <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <td><a href="#" class="text-danger"><i class="ri-delete-bin-3-line"></i></a></td>
+                                                        <td><img src="{{ item.produto.imagem.url }}" class="img-fluid" width="35" height="35" alt="product"></td>
+                                                        <td>{{ item.produto.nome }}</td>
+                                                        <td>
+                                                            <div class="form-group mb-0">
+                                                                <input type="number" class="form-control cart-qty" name="cartQty1" id="cartQty1" value="{{ item.quantidade }}">
+                                                            </div>
+                                                        </td>
+                                                        <td>R${{ item.produto.preco }}</td>
+                                                        <td class="text-right">R${{ item.total }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="cart-body">
+                                        <div class="row">
+                                            <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
+                                                <div class="order-note">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="search" class="form-control" placeholder="Coupon Code" aria-label="Search" aria-describedby="button-addonTags">
+                                                                <div class="input-group-append">
+                                                                    <button class="input-group-text" type="submit" id="button-addonTags">Apply</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="specialNotes">Special Note for this order:</label>
+                                                            <textarea class="form-control" name="specialNotes" id="specialNotes" rows="3" placeholder="Message here"></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
+                                                <div class="order-total table-responsive ">
+                                                    <table class="table table-borderless text-right">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Sub Total :</td>
+                                                                <td>$1000.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Frete :</td>
+                                                                <td>$0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="f-w-7 font-18"><h4>Total Carrinho :</h4></td>
+                                                                <td class="f-w-7 font-18"><h4>R${{ carrinho.subtotal_carrinho }}</h4></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cart-footer text-right">
+                                        <button type="button" class="btn btn-info my-1"><i class="ri-save-line mr-2"></i>Update Cart</button>
+                                        <a href="page-checkout.html" class="btn btn-success my-1">Proceed to Checkout<i class="ri-arrow-right-line ml-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End col -->
+        </div>
+        <!-- End row -->
     </div>
-    <div class="grid-child-carrinho container-car">{{ item.produto.nome }}</div>
-    <div class="grid-child-carrinho container-car">{{ item.quantidade }}</div>
-    <div class="grid-child-carrinho container-car">R${{ item.produto.preco }}</div>
-    <div class="grid-child-carrinho container-car">R${{ item.total }}</div>
-{% endfor %}
-</div>
-<div class="container" style="margin-top: 460px">
-<button>Finalizar compra</button>
-</div>
+    </div>
 {% endblock %}

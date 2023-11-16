@@ -45,7 +45,7 @@
                         {% block nav %}
                         <div id="navi"><div id="red-circle"><a id="inside-circle">{{ carrinho.num_itens_carrinho }}</a></div></div>
                         <div id="infoi">
-                            <a href=""><img src="media/cart2.svg" height="20" width="32" /></a>
+                            <a href="{% url 'carrinho' %}"><img src="media/cart2.svg" height="20" width="32" /></a>
                         </div>
                         {% endblock %}
                     </div>

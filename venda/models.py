@@ -83,6 +83,14 @@ class Carrinho(models.Model):
         quantidade = sum([item.quantidade for item in itens])
         return quantidade
 
+    @property
+    def subtotal_carrinho(self):
+        produtos = self.itenscarrinho.all()
+        total = sum([produto.total for produto in produtos])
+        preco_total = f"{total:.2f}"
+        return preco_total
+
+
 class ItemCarrinho(models.Model):
     produto = models.ForeignKey('Produto', on_delete=models.CASCADE, related_name='itens')
     carrinho = models.ForeignKey('Carrinho', on_delete=models.CASCADE, related_name='itenscarrinho')
