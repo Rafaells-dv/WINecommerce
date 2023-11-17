@@ -39,9 +39,9 @@
                                                         <td>{{ item.produto.nome }}</td>
                                                         <td>
                                                             <div class="row row-cols-3">
-                                                                <button class="btn btn-success btn-sm">+</button>
+                                                                <button class="add-to-cart btn btn-success btn-sm" value="{{ item.produto.id }}">+</button>
                                                                 <div class="justify-items-center">{{ item.quantidade }}</div>
-                                                                <button class="btn btn-danger btn-sm">-</button>
+                                                                <button class="remove-from-carrinho btn btn-danger btn-sm" value="{{ item.produto.id }}">-</button>
                                                             </div>
                                                         </td>
                                                         <td>R${{ item.produto.preco }}</td>
@@ -109,4 +109,6 @@
         <!-- End row -->
     </div>
     </div>
+
+
 {% endblock %}

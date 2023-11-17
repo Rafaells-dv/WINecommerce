@@ -15,7 +15,8 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
-let btns = document.querySelectorAll(".add-to-cart")
+
+let btns = document.querySelectorAll("#plus-button")
 
 btns.forEach(btn=>{
     btn.addEventListener("click", AddToCarrinho)
@@ -39,32 +40,4 @@ function AddToCarrinho(e){
     .catch(error=>{
         console.log(error)
     })
-    location.reload()
-}
-
-let btnRemove = document.querySelectorAll(".remove-from-carrinho")
-
-btnRemove.forEach(btn=>{
-    btn.addEventListener("click", RemoveFromCarrinho)
-})
-
-function RemoveFromCarrinho(e){
-    let id_produto = e.target.value
-    let url = '/remove_from_carrinho'
-
-    let data = {id:id_produto}
-
-    fetch(url, {
-        method: "POST",
-        headers: {"Content-Type":"application/json", 'X-CSRFToken': csrftoken},
-        body: JSON.stringify(data)
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data)
-    })
-    .catch(error=>{
-        console.log(error)
-    })
-    location.reload()
 }
