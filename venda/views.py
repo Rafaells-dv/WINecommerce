@@ -24,7 +24,9 @@ def index(request):
 
     if request.user.is_authenticated:
         carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
-    context = {"produtos":produtos, "carrinho":carrinho}
+        context = {"produtos":produtos, "carrinho":carrinho}
+    else:
+        context = {"produtos": produtos}
 
     return render(request, "index.html", context)
 
@@ -50,6 +52,7 @@ def add_to_carrinho(request):
 
     return JsonResponse("Funcionando", safe=False)
 
+
 def remove_from_carrinho(request):
     data = json.loads(request.body)
     id_produto = data["id"]
@@ -58,12 +61,30 @@ def remove_from_carrinho(request):
     if request.user.is_authenticated:
         carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
         itemcarrinho, created = ItemCarrinho.objects.get_or_create(carrinho=carrinho, produto=produto)
-        if itemcarrinho.quantidade > 0:
+        if itemcarrinho.quantidade > 1:
             itemcarrinho.quantidade -= 1
             itemcarrinho.save()
         print(itemcarrinho)
 
     return JsonResponse("Funcionando", safe=False)
+
+
+def delete_item_carrinho(request):
+    data = json.loads(request.body)
+    id_produto = data["id"]
+    produto = Produto.objects.get(id=id_produto)
+
+    if request.user.is_authenticated:
+        carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
+        itemcarrinho, created = ItemCarrinho.objects.get_or_create(carrinho=carrinho, produto=produto)
+
+        itemcarrinho.delete()
+        carrinho.save()
+
+        print(itemcarrinho)
+
+    return JsonResponse("Funcionando", safe=False)
+
 
 class ProductDetailView(DetailView):
     model = Produto

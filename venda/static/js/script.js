@@ -68,3 +68,30 @@ function RemoveFromCarrinho(e){
     })
     location.reload()
 }
+
+
+let btnDelete = document.querySelectorAll(".delete-item-carrinho")
+
+btnDelete.forEach(btn =>{
+    btn.addEventListener("click", DeleteItemCarrinho)
+})
+
+function DeleteItemCarrinho(e){
+    let id_produto = e.target.value
+    let url = '/delete_item_carrinho'
+    let data = {id:id_produto}
+
+    fetch(url, {
+        method: "POST",
+        headers: {"Content-Type":"application/json", 'X-CSRFToken': csrftoken},
+        body: JSON.stringify(data)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+    })
+    .catch(error=>{
+        console.log(error)
+    })
+    location.reload()
+}

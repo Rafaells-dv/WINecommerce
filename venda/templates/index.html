@@ -5,7 +5,7 @@
             <div class="row g-0 p-0 row-cols-1 row-cols-lg-3">
                 {% for pc in produtos %}
                     <div class="produto">
-                        <img src="{{ pc.imagem.url }}" width="100%" height="100%" id="lista_imagem_produto"/>
+                        <img draggable="false" src="{{ pc.imagem.url }}" width="100%" height="100%" id="lista_imagem_produto"/>
                         <div class="centered">{{ pc.nome }}</div>
                     </div>
                 {% endfor %}

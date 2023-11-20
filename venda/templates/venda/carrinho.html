@@ -34,14 +34,18 @@
                                                 {% for item in itens %}
                                                     <tr>
                                                         <th scope="row">{{ forloop.counter }}</th>
-                                                        <td><a href="#" class="text-danger"><i class="ri-delete-bin-3-line"></i></a></td>
+                                                        <td><button class="delete-item-carrinho btn btn-outline-danger" value="{{ item.produto.id }}">Remover</button></td>
                                                         <td><img src="{{ item.produto.imagem.url }}" class="img-fluid" width="35" height="35" alt="product"></td>
                                                         <td>{{ item.produto.nome }}</td>
                                                         <td>
                                                             <div class="row row-cols-3">
                                                                 <button class="add-to-cart btn btn-success btn-sm" value="{{ item.produto.id }}">+</button>
                                                                 <div class="justify-items-center">{{ item.quantidade }}</div>
-                                                                <button class="remove-from-carrinho btn btn-danger btn-sm" value="{{ item.produto.id }}">-</button>
+                                                                {% if item.quantidade == 1 %}
+                                                                    <button class="remove-from-carrinho btn btn-secondary btn-sm" value="{{ item.produto.id }}" disabled>-</button>
+                                                                {% else %}
+                                                                    <button class="remove-from-carrinho btn btn-danger btn-sm" value="{{ item.produto.id }}">-</button>
+                                                                {% endif %}
                                                             </div>
                                                         </td>
                                                         <td>R${{ item.produto.preco }}</td>

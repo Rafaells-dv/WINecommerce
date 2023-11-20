@@ -1,13 +1,4 @@
 {% extends "base_generic.html" %}
-{% block navbar %}
-  <nav style="background-color: #DFCC24 !important;" class="navbar navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="/media/logopreta.png" alt="" width="30" height="30" >
-      </a>
-    </div>
-  </nav>
-{% endblock %}
 {% block content %}
     {% if form.errors %}
       <p>Nome de usuário e senha incorretos. Tente novamente.</p>

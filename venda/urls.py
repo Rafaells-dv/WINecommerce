@@ -9,5 +9,6 @@ urlpatterns = [
     path('cadastro/', views.CadastroView.as_view(), name='cadastro'),
     path('add_to_carrinho', views.add_to_carrinho, name="add"),
     path('remove_from_carrinho', views.remove_from_carrinho, name="remove"),
+    path('delete_item_carrinho', views.delete_item_carrinho, name="delete"),
     path('carrinho', views.carrinho, name="carrinho"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
