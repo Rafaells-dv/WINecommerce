@@ -21,21 +21,8 @@ def carrinho(request):
 
 def index(request):
     produtos = Produto.objects.filter(categoria__icontains="c")
-
-    if request.user.is_authenticated:
-        carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
-        context = {"produtos":produtos, "carrinho":carrinho}
-    else:
-        context = {"produtos": produtos}
-
+    context = {"produtos": produtos}
     return render(request, "index.html", context)
-
-def num_carrinho(request):
-    if request.user.is_authenticated:
-        carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
-
-    context = {"carrinho":carrinho}
-    return render(request, "base_generic.html", context)
 
 
 def add_to_carrinho(request):
