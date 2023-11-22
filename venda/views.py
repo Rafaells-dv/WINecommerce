@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import  DetailView, CreateView
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
@@ -88,6 +88,7 @@ def delete_item_carrinho(request):
 
 class ProductDetailView(DetailView):
     model = Produto
+
 
 class CadastroView(CreateView):
     form_class = UserCreationForm
