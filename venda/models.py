@@ -103,3 +103,4 @@ class ItemCarrinho(models.Model):
     def total(self):
         total = self.produto.preco * self.quantidade
         return total
+

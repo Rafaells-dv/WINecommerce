@@ -4,9 +4,13 @@
 
 {% block content %}
   <h2>Cadastre-se!</h2>
+<div class="container">
   <form method="post">
     {% csrf_token %}
+    <fieldset class="form-group">
     {{ form.as_p }}
+    </fieldset>
     <button type="submit">Cadastrar</button>
   </form>
+</div>
 {% endblock %}

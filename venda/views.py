@@ -1,8 +1,9 @@
-from django.views.generic import  DetailView, CreateView
+from django.views.generic import  DetailView, CreateView, FormView
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.shortcuts import render
+from .forms import CriarContaForm
 from django.http import JsonResponse
 import json
 
@@ -77,7 +78,6 @@ class ProductDetailView(DetailView):
     model = Produto
 
 
-class CadastroView(CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy("login")
+class CadastroView(FormView):
+    form_class = CriarContaForm
     template_name = "registration/cadastro.html"
