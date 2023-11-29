@@ -15,71 +15,37 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
-let btns = document.querySelectorAll(".add-to-cart")
+let btns = document.querySelectorAll(".cart-btn")
 
 btns.forEach(btn=>{
-    btn.addEventListener("click", AddToCarrinho)
+    btn.addEventListener("click", buttonsCarrinho)
 })
 
-function AddToCarrinho(e){
-    let id_produto = e.target.value
-    let url = '/add_to_carrinho'
+function buttonsCarrinho(e){
+    let id_produto = e.target.value;
+    var key = this.innerText;
 
-    let data = {id:id_produto}
+    switch(key) {
+        case "+":
+            var url = '/add_to_carrinho'
+            break;
 
-    fetch(url, {
-        method: "POST",
-        headers: {"Content-Type":"application/json", 'X-CSRFToken': csrftoken},
-        body: JSON.stringify(data)
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data)
-    })
-    .catch(error=>{
-        console.log(error)
-    })
-    location.reload()
-}
+        case "Comprar":
+            url = '/add_to_carrinho'
+            break;
 
-let btnRemove = document.querySelectorAll(".remove-from-carrinho")
+        case "-":
+            url = '/remove_from_carrinho'
+            break;
 
-btnRemove.forEach(btn=>{
-    btn.addEventListener("click", RemoveFromCarrinho)
-})
+        case "Remover":
+            url = '/delete_item_carrinho'
+            break;
 
-function RemoveFromCarrinho(e){
-    let id_produto = e.target.value
-    let url = '/remove_from_carrinho'
-
-    let data = {id:id_produto}
-
-    fetch(url, {
-        method: "POST",
-        headers: {"Content-Type":"application/json", 'X-CSRFToken': csrftoken},
-        body: JSON.stringify(data)
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data)
-    })
-    .catch(error=>{
-        console.log(error)
-    })
-    location.reload()
-}
+    }
 
 
-let btnDelete = document.querySelectorAll(".delete-item-carrinho")
-
-btnDelete.forEach(btn =>{
-    btn.addEventListener("click", DeleteItemCarrinho)
-})
-
-function DeleteItemCarrinho(e){
-    let id_produto = e.target.value
-    let url = '/delete_item_carrinho'
-    let data = {id:id_produto}
+    let data = {id:id_produto};
 
     fetch(url, {
         method: "POST",
@@ -104,6 +70,7 @@ function meu_callback(conteudo) {
     let endereco = logradouro+" - "+localidade+"/"+uf;
     document.getElementById("endereco-entrega").textContent = "Entregar em: "+endereco;
 }
+
 function meuEndereco(form){
     let cep = form.inputbox.value.replace(/\D/g, '');
 

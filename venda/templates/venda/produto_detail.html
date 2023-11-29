@@ -13,9 +13,9 @@
     {% endfor %}
     <h3>Preço: R${{ produto.preco }}</h3>
     {% if user.is_authenticated %}
-    <a href="{% url 'carrinho' %}"><button class="add-to-cart" value="{{ produto.id }}">Comprar</button></a>
+    <a href="{% url 'carrinho' %}"><button class="btn btn-primary cart-btn" value="{{ produto.id }}">Comprar</button></a>
     {% else %}
-    <a href="{% url 'login' %}"><button class="add-to-cart" value="{{ produto.id }}">Comprar</button></a>
+    <a href="{% url 'login' %}"><button class="btn btn-primary cart-btn" value="{{ produto.id }}">Comprar</button></a>
     {% endif %}
   </div>
 </div>
