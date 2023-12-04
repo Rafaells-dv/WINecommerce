@@ -6,8 +6,8 @@ from django.contrib.auth.models import User, AbstractUser
 # Create your models here.
 class Usuario(AbstractUser):
     cpf = models.IntegerField(default=0)
-    celular = models.IntegerField()
-    cep = models.IntegerField()
+    celular = models.IntegerField(default=0)
+    cep = models.IntegerField(default=0)
     foto = models.ImageField(default='media/perfil.png', upload_to="media/")
 
     def get_absolute_url(self):
@@ -16,7 +16,7 @@ class Usuario(AbstractUser):
 
 class Produto(models.Model):
     nome = models.CharField(max_length=100, help_text='Nome')
-    descricao = models.CharField(max_length=100, help_text='Descrição')
+    descricao = models.TextField(max_length=500, help_text='Descrição')
     preco = models.FloatField(help_text='Preço')
     imagem = models.ImageField(upload_to='images', default='Sem imagem')
     estoque = models.IntegerField(default=0)
