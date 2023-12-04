@@ -7,10 +7,11 @@
             <div class="col-lg-4">
               <div class="card mb-4">
                 <div class="card-body text-center">
-                  <img src="../../{{user.foto}}" alt="avatar"
-                    class="rounded-circle img-fluid" style="width: 150px;">
+                  <img src="../{{user.foto}}" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                   <h5 class="my-3">{{user.username}}</h5>
                   <p class="text-muted mb-1">{{user.email}}</p>
+                  <a href="{{ user.get_absolute_url }}"><p class="">Editar perfil</p></a>
                   <div class="d-flex justify-content-center mb-2">
                   </div>
                 </div>

@@ -29,7 +29,8 @@
                 {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          <img src="../../{{ user.foto }}" height="30px">
+                          <img src="../../{{ user.foto }}" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 30px; height: 30px">
                       </a>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'perfil' %}">Meu Perfil</a></li>

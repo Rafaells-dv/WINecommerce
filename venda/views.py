@@ -1,9 +1,7 @@
-from django.views.generic import  DetailView, CreateView, FormView
+from django.views.generic import DetailView, FormView, UpdateView
 from .models import *
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
 from django.shortcuts import render
-from .forms import CriarContaForm
+from .forms import CriarContaForm, EditarPerfilForm
 from django.http import JsonResponse
 import json
 
@@ -92,3 +90,12 @@ class CadastroView(FormView):
 
     def get_success_url(self):
         return reverse('login')
+
+
+class EditarPerfilView(UpdateView):
+    model = Usuario
+    template_name = "registration/editarperfil.html"
+    fields = ['username', 'email', 'cep', 'foto']
+
+    def get_success_url(self):
+        return reverse('perfil')

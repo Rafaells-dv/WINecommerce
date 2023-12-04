@@ -5,10 +5,13 @@ from django.contrib.auth.models import User, AbstractUser
 
 # Create your models here.
 class Usuario(AbstractUser):
-    cpf = models.IntegerField()
+    cpf = models.IntegerField(default=0)
     celular = models.IntegerField()
     cep = models.IntegerField()
-    foto = models.ImageField(default='media/perfil.png')
+    foto = models.ImageField(default='media/perfil.png', upload_to="media/")
+
+    def get_absolute_url(self):
+        return reverse('editarperfil', args=[str(self.id)])
 
 
 class Produto(models.Model):
