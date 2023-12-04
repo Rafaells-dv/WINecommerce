@@ -1,9 +1,16 @@
 from django.db import models
 from django.urls import reverse
 import uuid
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 # Create your models here.
+class Usuario(AbstractUser):
+    cpf = models.IntegerField()
+    celular = models.IntegerField()
+    cep = models.IntegerField()
+    foto = models.ImageField(default='media/perfil.png')
+
+
 class Produto(models.Model):
     nome = models.CharField(max_length=100, help_text='Nome')
     descricao = models.CharField(max_length=100, help_text='Descrição')
@@ -71,7 +78,7 @@ class PC(models.Model):
 
 class Carrinho(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
 
     def __str__(self):

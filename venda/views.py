@@ -9,6 +9,10 @@ import json
 
 
 # Create your views here.
+def perfil(request):
+    return render(request, "venda/perfil.html")
+
+
 def carrinho(request):
     carrinho = None
     itenscarrinho = []
@@ -81,3 +85,10 @@ class ProductDetailView(DetailView):
 class CadastroView(FormView):
     form_class = CriarContaForm
     template_name = "registration/cadastro.html"
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('login')
