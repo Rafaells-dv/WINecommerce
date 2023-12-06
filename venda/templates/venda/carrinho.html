@@ -1,5 +1,5 @@
 {% extends 'base_generic.html' %}
-
+{% load static %}
 {% block content %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 <div class="container">
@@ -104,6 +104,5 @@
         <!-- End row -->
     </div>
     </div>
-
-
+    <script src="{% static 'js/cep.js' %}" charset="utf-8"></script>
 {% endblock %}

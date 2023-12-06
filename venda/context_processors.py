@@ -1,4 +1,5 @@
 from .models import Carrinho
+import json
 
 def carrinho(request):
     if request.user.is_authenticated:

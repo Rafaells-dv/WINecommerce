@@ -7,10 +7,6 @@ import json
 
 
 # Create your views here.
-def perfil(request):
-    return render(request, "venda/perfil.html")
-
-
 def carrinho(request):
     carrinho = None
     itenscarrinho = []
@@ -27,6 +23,8 @@ def index(request):
     context = {"produtos": produtos}
     return render(request, "index.html", context)
 
+def perfil(request):
+    return render(request, "venda/perfil.html")
 
 def add_to_carrinho(request):
     data = json.loads(request.body)
@@ -38,7 +36,6 @@ def add_to_carrinho(request):
         itemcarrinho, created = ItemCarrinho.objects.get_or_create(carrinho=carrinho, produto=produto)
         itemcarrinho.quantidade += 1
         itemcarrinho.save()
-        print(itemcarrinho)
 
     return JsonResponse("Funcionando", safe=False)
 
