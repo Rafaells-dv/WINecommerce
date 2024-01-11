@@ -1,9 +1,11 @@
 from django.db import models
 from django.urls import reverse
 import uuid
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+# Create your models here
+
+
 class Usuario(AbstractUser):
     cpf = models.IntegerField(default=0)
     celular = models.IntegerField(default=0)
@@ -113,4 +115,3 @@ class ItemCarrinho(models.Model):
     def total(self):
         total = self.produto.preco * self.quantidade
         return total
-
