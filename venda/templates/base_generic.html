@@ -7,61 +7,12 @@
         <title>WIN</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link href="./output.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-10" style="background-color: #FFC60B !important;">
-            <div class="container-fluid">
-              <a class="navbar-brand px-5" href="{% url 'home' %}" style="color: black !important;"><img src="../../media/logopreta.png" alt="logo da win informática" height="30" class="px-2">WIN</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <ul class="nav justify-content-space-between">
-                <li class="nav-item">
-                  <a class="nav-link" style="color: black !important;" href="{% url 'home' %}">Computadores</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" style="color: black !important;" href="">Gear</a>
-                </li>
-              </ul>
-              <ul class="nav justify-content-center px-5">
-                {% if user.is_authenticated %}
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          <img src="../../{{ user.foto }}" alt="avatar"
-                    class="rounded-circle img-fluid" style="width: 30px; height: 30px">
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'perfil' %}">Meu Perfil</a></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                      </ul>
-                    </li>
-                  {% else %}
-                  <li class="nav-item">
-                    <a class="nav-link" style="color: black !important;" href="{% url 'login' %}">Login</a>
-                  </li>
-                  {% endif %}
-                <li class="nav-item">
-                    <div id="container-cart-icon">
-                        {% if user.is_authenticated %}
-                        <div id="navi"><div id="red-circle"><a id="inside-circle">{{ carrinho.num_itens_carrinho }}</a></div></div>
-                        <div id="infoi">
-                            <a href="{% url 'carrinho' %}"><img src="../media/cart2.svg" height="20" width="32" /></a>
-                        </div>
-                        {% else %}
-                        <div id="navi"><div id="red-circle"><a id="inside-circle">0</a></div></div>
-                        <div id="infoi">
-                            <a href="{% url 'login' %}"><img src="../../media/cart2.svg" height="20" width="32" /></a>
-                        </div>
-                        {% endif %}
-                    </div>
-                </li>
-              </ul>
-              </div>
-            </div>
-          </nav>
-
+    {% include 'navbar.html' %}
 
     {% block content %}
     {% endblock %}
