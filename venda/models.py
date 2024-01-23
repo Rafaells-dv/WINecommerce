@@ -7,8 +7,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Usuario(AbstractUser):
+    email = models.EmailField()
     cpf = models.IntegerField(default=0)
-    celular = models.IntegerField(default=0)
     cep = models.IntegerField(default=0)
     foto = models.ImageField(default='media/perfil.png', upload_to="media/")
 

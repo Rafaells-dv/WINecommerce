@@ -1,93 +1,95 @@
 #container-cart-icon {
-    width: 25px;
-    height: 25px;
-    position: relative;
-    padding: 16px;
-    margin-top: 5px;
-  }
+  width: 25px;
+  height: 25px;
+  position: relative;
+  padding: 16px;
+  margin-top: 5px;
+}
 
-  #navi,
-  #infoi {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  #infoi {
-    z-index: 10;
-  }
-  #red-circle {
-    background-color: rgb(255, 0, 0);
-    border-radius: 50%;
-    width: 0.9rem;
-    height: 0.9rem;
-    position: relative;
-    top: 40%;
-    left: 60%;
-    z-index: 20;
+#navi,
+#infoi {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#infoi {
+  z-index: 10;
+}
+#red-circle {
+  background-color: rgb(255, 0, 0);
+  border-radius: 50%;
+  width: 0.9rem;
+  height: 0.9rem;
+  position: relative;
+  top: 40%;
+  left: 60%;
+  z-index: 20;
 
-  }
-  #inside-circle {
-    font-size: 0.8rem;
-    position: absolute;
-    top: 1px;
-    left: 25%;
-    line-height: 12.5px;
-    color: white;
-  }
-  .produto {
-    position: relative;
-    text-align: center;
-    color: white !important;
-    padding: 0px ;
-    font-family: 'Lucida Grande', Arial, sans-serif;
-    font-weight: bold;
-  }
-  #lista_imagem_produto {
-    opacity: 0.2;
-  }
-  #imagem_produto_especs {
-    opacity: 0.5;
-  }
-  
-  #lista_imagem_produto:hover {
-    opacity: 0.6;
-  }
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+}
+#inside-circle {
+  font-size: 0.8rem;
+  position: absolute;
+  top: 1px;
+  left: 25%;
+  line-height: 12.5px;
+  color: white;
+}
+.produto {
+  position: relative;
+  text-align: center;
+  color: white !important;
+  padding: 0px ;
+  font-family: 'Lucida Grande', Arial, sans-serif;
+  font-weight: bold;
+}
+#lista_imagem_produto {
+  opacity: 0.2;
+}
+#imagem_produto_especs {
+  opacity: 0.5;
+}
 
-  #linha-gamer {
-    background-color: black;
-  }
-  .prevent-select {
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    text-decoration: none;
-  }
-  #pc1 {
-    max-height: 600px !important;
-  }
+#lista_imagem_produto:hover {
+  opacity: 0.6;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  .text-description {
-    background-color: #FFC60B;
-  }
-  #contact {
-    background-color: #444444;
-  }
+#linha-gamer {
+  background-color: black;
+}
+.prevent-select {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-decoration: none;
+}
+#pc1 {
+  max-height: 600px !important;
+}
 
-  .letra-footer {
-    color: #FEFFDB !important;
-  }
+.text-description {
+  background-color: #FFC60B;
+}
 
-  #plus-button {
-    width: 50px;
-    height: 50px;
-    background-color: green;
-    color: white;
-  }
+#contact {
+  background-color: #444444;
+  bottom: 0;
+}
+
+.letra-footer {
+  color: #FEFFDB !important;
+}
+
+#plus-button {
+  width: 50px;
+  height: 50px;
+  background-color: green;
+  color: white;
+}

@@ -9,24 +9,28 @@
           <p>Por favor logue para ter acesso a essa página.</p>
       {% endif %}
     {% endif %}
+<div class="bg-black bg-opacity-75 py-5 h-25">
+    <div class="container w-25 bg-black bg-opacity-25 rounded d-flex flex-column justify-content-center align-items-center py-5">
+          <form method="post" action="{% url 'login' %}">
+          <div class="container d-inline-flex flex-column align-items-center text-white">
+            {% csrf_token %}
+                <table>
+                  <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                  </tr>
+                  <tr>
+                    <td class="pt-3">{{ form.password.label_tag }}</td>
+                    <td class="pt-3">{{ form.password }}</td>
+                  </tr>
+                </table>
+                <input class="mt-4 btn btn-primary" type="submit" value="login" />
+                <input type="hidden" name="next" value="{{ next }}" />
+          </div>
+          </form>
 
-      <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <table>
-          <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-          </tr>
-          <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-          </tr>
-        </table>
-        <input type="submit" value="login" />
-        <input type="hidden" name="next" value="{{ next }}" />
-      </form>
-
-      {# Assumes you setup the password_reset view in your URLconf #}
-      <p><a href="">Esqueceu sua senha?</a><a href="{% url 'cadastro' %}">Cadastre-se</a></p>
-
+          {# Assumes you setup the password_reset view in your URLconf #}
+          <p class="pt-4"><a href="" class="pe-3">Esqueceu sua senha?</a><a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+    </div>
+</div>
 {% endblock %}

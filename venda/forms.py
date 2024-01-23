@@ -6,9 +6,14 @@ from django.forms import ModelForm
 
 class CriarContaForm(UserCreationForm):
 
+    def __init__(self, *args, **kwargs):
+        super(CriarContaForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'email', 'cpf', 'cep', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
     class Meta:
         model = Usuario
-        fields = ('username', 'email', 'cpf', 'celular', 'cep', 'password1', 'password2')
+        fields = ('username', 'email', 'cpf', 'cep', 'password1', 'password2')
 
         def clean_email(self):
             email = self.cleaned_data['email']

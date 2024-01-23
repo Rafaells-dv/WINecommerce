@@ -5,8 +5,8 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<header class="min-h-screen bg-black bg-opacity-75 bg-blend-overlay showcase border-gray-600 border-b-8 flex justify-center items-center bg-no-repeat py-5">
-    <div class="container z-10 h-full py-32 md:py-0 text-gray-100 text-center flex items-center flex-col">
+<header class="bg-black bg-opacity-75 py-5">
+    <div class="container text-center">
         <div class="container bg-black bg-opacity-25 p-5 rounded text-white">
           <form method="post">
                 {% csrf_token %}
@@ -14,7 +14,7 @@
                     {{ form|crispy }}
                     <legend class="border-bottom mb-4">Crie uma conta para continuar</legend>
                 </fieldset>
-                <button class="bg-red-600 py-1 px-3 text-gray-100 w-full md:text-lg rounded-md" type="submit">Criar Conta</button>
+                <button class="btn btn-primary" type="submit">Criar Conta</button>
             </form>
         </div>
     </div>
