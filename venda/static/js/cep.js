@@ -7,6 +7,7 @@ function meu_callback(conteudo) {
 
     let endereco = logradouro+" - "+localidade+"/"+uf;
     document.getElementById("endereco-entrega").textContent = "Entregar em: "+endereco;
+
 }
 
 function meuEndereco(form){
@@ -32,3 +33,4 @@ function meuEndereco(form){
     }
 
 }
+

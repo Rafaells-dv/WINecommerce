@@ -1,16 +1,22 @@
 {% extends "base_generic.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-  <h2>Editar Perfil</h2>
-<div class="container">
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <fieldset class="form-group">
-    {{ form.as_p }}
-    </fieldset>
-    <button type="submit">Salvar</button>
-  </form>
-</div>
+<header class="bg-black bg-opacity-75 py-5 d-flex flex-column align-items-center">
+    <h2 class="text-white">Editar Perfil</h2>
+    <div class="container text-center">
+        <div class="container bg-black bg-opacity-25 p-5 rounded text-white">
+          <form method="post">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+</header>
 {% endblock %}

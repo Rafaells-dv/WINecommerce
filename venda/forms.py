@@ -24,6 +24,7 @@ class CriarContaForm(UserCreationForm):
 
 
 class EditarPerfilForm(ModelForm):
+
     class Meta:
         model = Usuario
         fields = ('username','email','cep','foto')

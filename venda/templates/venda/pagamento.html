@@ -1,11 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <img src="{{ img_qrcode }}">
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+    <div class="d-flex flex-column justify-content-center align-items-center my-5">
+        <div class="d-flex flex-column align-items-center w-25 border border-dark rounded">
+            <div>
+                <h2 class="pt-5 px-5">QRcode</h2>
+            </div>
+            <div>
+                <img src="{{ img_qrcode }}">
+            </div>
+            <div>
+                <button id="codigoQrcode" class="btn btn-light" value="{{ qrcode }}" onclick="copyPaste()">Copia e cola <img id="paste-icon" src="../../media/paste.png"></button>
+            </div>
+            <div>
+                <h3 class="pb-5">Valor: R${{ carrinho.subtotal_carrinho }}</h3>
+            </div>
+        </div>
+    </div>
 
-</body>
-</html>
+    <script src="{% static 'js/pagamento.js' %}" charset="utf-8"></script>
+{% endblock %}

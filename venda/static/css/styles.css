@@ -6,6 +6,11 @@
   margin-top: 5px;
 }
 
+#paste-icon {
+  width: 17px;
+  height: 20px;
+}
+
 #navi,
 #infoi {
   width: 100%;
@@ -59,6 +64,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.centralize {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 #linha-gamer {
