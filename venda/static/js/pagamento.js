@@ -1,6 +1,5 @@
 function copyPaste() {
-    let qrcode = $('#codigoQrcode').getAttribute('value');
-    console.log(qrcode)
+    let qrcode = document.getElementById('codigoQrcode').value;
 
     if (!navigator.clipboard){
     }

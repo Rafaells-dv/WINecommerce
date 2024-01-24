@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .forms import CriarContaForm
 from django.http import JsonResponse
 from efipay import EfiPay
-from venda.credentials.credentials import credentials_h
+from venda.credentials.credentials import *
 import json
 
 
@@ -38,6 +38,15 @@ def pagamento(request):
 
         efi = EfiPay(credentials_h)
 
+        lista_chaves = efi.pix_list_evp()
+        n_chaves = len(lista_chaves['chaves'])
+
+        if n_chaves < 1:
+            chave_criada = efi.pix_create_evp()
+            chave_pix = chave_criada['chave']
+        else:
+            chave_pix = lista_chaves['chaves'][0]
+
         body = {
             'calendario': {
                 'expiracao': 3600
@@ -49,7 +58,7 @@ def pagamento(request):
             'valor': {
                 'original': f'{str(carrinho.subtotal_carrinho)}'
             },
-            'chave': '71cdf9ba-c695-4e3c-b010-abb521a3f1be',
+            'chave': chave_pix,
             'solicitacaoPagador': 'Cobrança dos serviços prestados.'
         }
 
