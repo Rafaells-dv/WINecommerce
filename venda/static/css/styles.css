@@ -93,3 +93,9 @@
   background-color: green;
   color: white;
 }
+
+.logged-out {
+  width: 100%;
+  min-height: 730px;
+  font-size: large;
+}
