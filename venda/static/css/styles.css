@@ -6,6 +6,10 @@
   margin-top: 5px;
 }
 
+main {
+  height: 80vh;
+}
+
 #paste-icon {
   width: 17px;
   height: 20px;

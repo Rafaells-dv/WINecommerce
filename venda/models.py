@@ -25,7 +25,6 @@ class Produto(models.Model):
     CATEGORIAS = (
         ('c', 'Computador'),
         ('p', 'Periférico'),
-        ('a', 'Acessório')
     )
     categoria = models.CharField(max_length=1,
                                  choices=CATEGORIAS,

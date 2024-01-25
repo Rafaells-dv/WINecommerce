@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, FormView, UpdateView
+from django.views.generic import DetailView, FormView, UpdateView, ListView
 from .models import *
 from django.shortcuts import render
 from .forms import CriarContaForm
@@ -125,6 +125,16 @@ def delete_item_carrinho(request):
         print(itemcarrinho)
 
     return JsonResponse("Funcionando", safe=False)
+
+
+class GearListView(ListView):
+    model = Produto
+    paginate_by = 10
+    template_name = "venda/gear.html"
+
+    def get_queryset(self):
+        return Produto.objects.filter(categoria__icontains="p")
+
 
 
 class ProductDetailView(DetailView):
