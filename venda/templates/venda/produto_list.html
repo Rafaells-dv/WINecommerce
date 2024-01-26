@@ -1,0 +1,62 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="d-flex flex-column align-items-center" style="width: 64rem; position: relative; top: 150px; left: 13%;" xmlns="http://www.w3.org/1999/html">
+        <div class="d-flex w-100 justify-content-between">
+            <div class="ps-3">
+                <form action="/gears" class="pt-2">
+                  <label for="cars">Ordenar por:</label>
+                  <select id="cars" name="cars">
+                    <option value="">Nenhum</option>
+                    <option value="maiorPreco">Maior preço</option>
+                    <option value="menorPreco">Menor preço</option>
+                  </select>
+                  <input type="submit">
+                </form>
+            </div>
+            <div>
+                <form class="form-inline mb-2 mb-md-2 d-flex pe-3">
+                    <input class="form-control mr-sm-2 me-2 border-dark" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><img src="../media/search.svg" width="20px" height="20px"></button>
+                </form>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            {% for produto in produto_list %}
+            <div class="border border-dark rounded m-2 px-4" style="width: 15rem; height: 20rem">
+                <img style="width: 100%; height: 50%; padding-top: 1rem; padding-bottom: 1rem" src="{{ produto.imagem.url }}">
+                <div class="d-flex flex-column border-top">
+                    <div>
+                        <h6 class="overflow-ellipsis"  style="white-space: nowrap;overflow: hidden;">{{produto}}</h6>
+                    </div>
+                    <div class="">
+                        <p>R${{produto.preco}}</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-warning w-100 cart-btn" value="{{ produto.id }}">Comprar</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="mt-4">
+            {% if is_paginated %}
+                <div class="pagination">
+                  <span class="page-links">
+                      {% if page_obj.has_previous %}
+                        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"><</a>
+                      {% endif %}
+                      {% for number in paginator.get_elided_page_range %}
+                        <a href="{{ request.path }}?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                      {% endfor %}
+                      {% if page_obj.has_next %}
+                        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">></a>
+                      {% endif %}
+                  </span>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+    <main></main>
+{% endblock %}

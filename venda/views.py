@@ -129,8 +129,7 @@ def delete_item_carrinho(request):
 
 class GearListView(ListView):
     model = Produto
-    paginate_by = 10
-    template_name = "venda/gear.html"
+    paginate_by = 4
 
     def get_queryset(self):
         return Produto.objects.filter(categoria__icontains="p")

@@ -7,8 +7,13 @@
 }
 
 main {
-  height: 80vh;
+  height: 40vh;
 }
+
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+}
+
 
 #paste-icon {
   width: 17px;
