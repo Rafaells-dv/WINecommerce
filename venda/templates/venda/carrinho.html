@@ -78,7 +78,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Frete :</td>
-                                                                <td>$0.00</td>
+                                                                <td>Grátis</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="f-w-7 font-18"><h4>Total Carrinho :</h4></td>
@@ -92,6 +92,7 @@
                                     </div>
                                     <div class="cart-footer text-right">
                                         <a href="{% url 'pagamento' %}" class="btn btn-success my-1">Finalizar compra</a>
+                                        <a href="{% url 'gears' %}" class="btn btn-primary my-1">Continuar comprando</a>
                                     </div>
                                 </div>
                             </div>
@@ -104,5 +105,6 @@
         <!-- End row -->
     </div>
     </div>
+    <main></main>
     <script src="{% static 'js/cep.js' %}" charset="utf-8"></script>
 {% endblock %}

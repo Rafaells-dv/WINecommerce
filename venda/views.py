@@ -136,8 +136,6 @@ class GearListView(ListView):
         query = self.request.GET.get('q')
         order = self.request.GET.get('order')
 
-        print(query)
-
         queryset = Produto.objects.filter(categoria__icontains="p")
 
         if query:
@@ -150,8 +148,6 @@ class GearListView(ListView):
 
         else:
             return queryset
-
-
 
 
 class ProductDetailView(DetailView):

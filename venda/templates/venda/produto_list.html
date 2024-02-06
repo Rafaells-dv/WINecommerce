@@ -1,7 +1,7 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<div class="d-flex flex-column " style="width: 64rem; position: relative; top: 150px; left: 13%;" xmlns="http://www.w3.org/1999/html">
+<div class="d-flex flex-column" style="width: 64rem; position: relative; top: 150px; left: 13%;" xmlns="http://www.w3.org/1999/html">
         <div class="d-flex w-100 justify-content-between">
             <div class="ps-3">
                 <form method="get" action="{% url 'gears' %}" class="pt-2">
@@ -33,7 +33,7 @@
                         <p>R${{produto.preco}}</p>
                     </div>
                     <div>
-                        <button class="btn btn-warning w-100 cart-btn" value="{{ produto.id }}">Comprar</button>
+                        <a href="{{ produto.get_absolute_url }}"><button class="btn btn-warning w-100 ">Comprar</button></a>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,6 @@ main {
   text-overflow: ellipsis;
 }
 
-
 #paste-icon {
   width: 17px;
   height: 20px;
@@ -28,9 +27,11 @@ main {
   top: 0;
   left: 0;
 }
+
 #infoi {
   z-index: 10;
 }
+
 #red-circle {
   background-color: rgb(255, 0, 0);
   border-radius: 50%;
@@ -50,6 +51,7 @@ main {
   line-height: 12.5px;
   color: white;
 }
+
 .produto {
   position: relative;
   text-align: center;
@@ -58,6 +60,7 @@ main {
   font-family: 'Lucida Grande', Arial, sans-serif;
   font-weight: bold;
 }
+
 #lista_imagem_produto {
   opacity: 0.2;
 }
@@ -89,6 +92,7 @@ main {
   user-select: none;
   text-decoration: none;
 }
+
 #pc1 {
   max-height: 600px !important;
 }
