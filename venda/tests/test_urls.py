@@ -3,6 +3,7 @@ from django.urls import reverse, resolve
 from venda.views import *
 from venda.models import Produto, Usuario
 
+
 class TestUrls(TestCase):
 
     def test_home_url_resolved(self):

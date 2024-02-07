@@ -92,8 +92,6 @@ def add_to_carrinho(request):
         itemcarrinho.quantidade += 1
         itemcarrinho.save()
 
-    return JsonResponse("Funcionando", safe=False)
-
 
 def remove_from_carrinho(request):
     data = json.loads(request.body)
@@ -106,9 +104,6 @@ def remove_from_carrinho(request):
         if itemcarrinho.quantidade > 1:
             itemcarrinho.quantidade -= 1
             itemcarrinho.save()
-        print(itemcarrinho)
-
-    return JsonResponse("Funcionando", safe=False)
 
 
 def delete_item_carrinho(request):
@@ -122,10 +117,6 @@ def delete_item_carrinho(request):
 
         itemcarrinho.delete()
         carrinho.save()
-
-        print(itemcarrinho)
-
-    return JsonResponse("Funcionando", safe=False)
 
 
 class GearListView(ListView):
