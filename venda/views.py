@@ -108,6 +108,8 @@ def remove_from_carrinho(request):
             itemcarrinho.quantidade -= 1
             itemcarrinho.save()
             return JsonResponse({"message": "Item removed to cart successfully."})
+        else:
+            return JsonResponse({"message": "Can´t remove, just one unit in the cart."})
     else:
         return JsonResponse({"error": "User is not authenticated."}, status=401)
 
@@ -122,6 +124,7 @@ def delete_item_carrinho(request):
 
         itemcarrinho.delete()
         carrinho.save()
+
         return JsonResponse({"message": "Item deleted to cart successfully."})
     else:
         return JsonResponse({"error": "User is not authenticated."}, status=401)
