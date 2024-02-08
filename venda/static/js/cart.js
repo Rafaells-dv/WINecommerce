@@ -7,10 +7,10 @@ btns.forEach(btn=>{
 function buttonsCarrinho(e){
     let id_produto = e.target.value;
     var key = this.innerText;
-
+    var url = '';
     switch(key) {
         case "+":
-            var url = '/add_to_carrinho'
+            url = '/add_to_carrinho'
             break;
 
         case "Comprar":

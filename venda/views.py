@@ -2,11 +2,11 @@ from django.views.generic import DetailView, FormView, UpdateView, ListView
 from .models import *
 from django.shortcuts import render
 from .forms import CriarContaForm
-from django.http import JsonResponse
 from efipay import EfiPay
 from venda.credentials.credentials import *
 import json
 from django.db.models import Q
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -92,6 +92,9 @@ def add_to_carrinho(request):
         itemcarrinho.quantidade += 1
         itemcarrinho.save()
 
+        return JsonResponse({"message": "Item added to cart successfully."})
+    else:
+        return JsonResponse({"error": "User is not authenticated."}, status=401)
 
 def remove_from_carrinho(request):
     data = json.loads(request.body)
@@ -104,7 +107,9 @@ def remove_from_carrinho(request):
         if itemcarrinho.quantidade > 1:
             itemcarrinho.quantidade -= 1
             itemcarrinho.save()
-
+            return JsonResponse({"message": "Item removed to cart successfully."})
+    else:
+        return JsonResponse({"error": "User is not authenticated."}, status=401)
 
 def delete_item_carrinho(request):
     data = json.loads(request.body)
@@ -117,7 +122,9 @@ def delete_item_carrinho(request):
 
         itemcarrinho.delete()
         carrinho.save()
-
+        return JsonResponse({"message": "Item deleted to cart successfully."})
+    else:
+        return JsonResponse({"error": "User is not authenticated."}, status=401)
 
 class GearListView(ListView):
     model = Produto
