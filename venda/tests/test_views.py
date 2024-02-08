@@ -105,7 +105,6 @@ class CarrinhoTestView(TestCase):
 
         self.assertEqual(response.status_code, 401)
 
-
     def test_delete__item_carrinho_is_authenticated(self):
         login_successful = self.client.login(username='testuser', password='testpassword')
         if not login_successful:
