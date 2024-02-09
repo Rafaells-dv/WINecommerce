@@ -6,7 +6,7 @@ from efipay import EfiPay
 from venda.credentials.credentials import *
 import json
 from django.db.models import Q
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 
 # Create your views here.
@@ -37,7 +37,7 @@ def pagamento(request):
     if request.user.is_authenticated:
         carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
 
-        efi = EfiPay(credentials_h)
+        efi = EfiPay(credentials_p)
 
         lista_chaves = efi.pix_list_evp()
         n_chaves = len(lista_chaves['chaves'])
@@ -78,7 +78,9 @@ def pagamento(request):
 
         context = {"qrcode": qrcode, "img_qrcode": img_qrcode}
 
-    return render(request, "venda/pagamento.html", context)
+        return render(request, "venda/pagamento.html", context)
+    else:
+        return HttpResponse(status=401)
 
 
 def add_to_carrinho(request):
