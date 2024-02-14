@@ -11,16 +11,18 @@ class CriarContaForm(UserCreationForm):
 
         for fieldname in ['username', 'email', 'cpf', 'cep', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
+
     class Meta:
         model = Usuario
         fields = ('username', 'email', 'cpf', 'cep', 'password1', 'password2')
 
-        def clean_email(self):
-            email = self.cleaned_data['email']
-            if Usuario.objects.filter(email=email).exists():
-                raise forms.ValidationError(
-                    "Este e-mail já está cadastrado em outra conta! Por favor, utilize outro endereço de e-mail.")
-            return email
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        print(email)
+        if Usuario.objects.filter(email=email).exists():
+            raise forms.ValidationError(
+                "Este e-mail já está cadastrado em outra conta! Por favor, utilize outro endereço de e-mail.")
+        return email
 
 
 class EditarPerfilForm(ModelForm):
@@ -29,11 +31,11 @@ class EditarPerfilForm(ModelForm):
         model = Usuario
         fields = ('username','email','cep','foto')
 
-        def clean_email(self):
-            email = self.cleaned_data['email']
-            if Usuario.objects.filter(email=email).exists():
-                raise forms.ValidationError(
-                    "Este e-mail já está cadastrado em outra conta! Por favor, utilize outro endereço de e-mail.")
-            return email
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if Usuario.objects.filter(email=email).exists():
+            raise forms.ValidationError(
+                "Este e-mail já está cadastrado em outra conta! Por favor, utilize outro endereço de e-mail.")
+        return email
 
 
