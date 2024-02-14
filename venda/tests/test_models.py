@@ -49,3 +49,41 @@ class TestCarrinhoModels(TestCase):
         self.assertEquals(self.carrinho.subtotal_carrinho, f'{3500.00:.2f}')
 
 
+class TestProduct(TestCase):
+
+    def setUp(self):
+        self.produto = Produto.objects.create(
+            nome="pc",
+            preco=1000.00,
+            categoria='c',
+            id=1,
+        )
+
+        self.pc = PC.objects.create(
+            id=1,
+            produto=self.produto,
+            cpu = 'processador',
+            gpu = 'placa de video',
+            memoria_ram = '16gb',
+            motherboard = 'placa mãe',
+            armazenamento = '1tb',
+            cooler = 'cooler',
+            fonte = '600w',
+            gabinete = 'gamer',
+        )
+
+    def test_funcao_pecas(self):
+        pecas_teste = {
+            'gpu': 'placa de video',
+            'cpu': 'processador',
+            'fonte': '600w',
+            'cooler': 'cooler',
+            'armazenamento': '1tb',
+            'gabinete': 'gamer',
+            'ram': '16gb',
+            'motherboard': 'placa mãe',
+        }
+
+        self.assertEquals(self.produto.pecas_pc(), pecas_teste)
+
+
