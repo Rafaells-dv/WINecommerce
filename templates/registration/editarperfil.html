@@ -9,9 +9,9 @@
     <h2 class="text-white">Editar Perfil</h2>
     <div class="container text-center">
         <div class="container bg-black bg-opacity-25 p-5 rounded text-white">
-          <form method="post">
+          <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <fieldset class="form-group">
+                <fieldset class="form-group ">
                     {{ form|crispy }}
                 </fieldset>
                 <button type="submit" class="btn btn-primary">Salvar</button>

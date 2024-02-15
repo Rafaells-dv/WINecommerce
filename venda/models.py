@@ -3,14 +3,12 @@ from django.urls import reverse
 import uuid
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here
-
 
 class Usuario(AbstractUser):
     email = models.EmailField()
     cpf = models.IntegerField(default=0)
     cep = models.IntegerField(default=0)
-    foto = models.ImageField(default='media/perfil.png', upload_to="media/")
+    foto = models.ImageField(default='profiles_img/perfil.png', upload_to="profiles_img/")
 
     def get_absolute_url(self):
         return reverse('editarperfil', args=[str(self.id)])
