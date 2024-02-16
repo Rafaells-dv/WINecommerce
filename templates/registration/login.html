@@ -30,7 +30,8 @@
           </form>
 
           {# Assumes you setup the password_reset view in your URLconf #}
-          <p class="pt-4"><a href="" class="pe-3">Esqueceu sua senha?</a><a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+          <p class="pt-4"><a href="{% url 'password_reset' %}" class="pe-3">Esqueceu sua senha?</a><a href="{% url 'cadastro' %}">Cadastre-se</a></p>
     </div>
 </div>
+<main class="bg-black bg-opacity-75"></main>
 {% endblock %}
