@@ -84,7 +84,7 @@ class Carrinho(models.Model):
     completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.user.username)
 
     @property
     def num_itens_carrinho(self):
@@ -107,6 +107,9 @@ class ItemCarrinho(models.Model):
 
     def __str__(self):
         return self.produto.nome
+
+    def user(self):
+        return self.carrinho.user.username
 
     @property
     def total(self):
