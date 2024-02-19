@@ -78,7 +78,7 @@ class TestEditarPerfilForm(TestCase):
 
         self.client.login(username='test', password='test')
 
-        image_path = r'C:\Users\Rafael\OneDrive - ufpr.br\Área de Trabalho\foto.jpg'
+        image_path = r'C:\Users\Rafael\OneDrive - ufpr.br\Área de Trabalho\win_test_profile_image.jpg'
         with open(image_path, 'rb') as f:
             photo_content = f.read()
 
@@ -111,9 +111,9 @@ class TestEditarPerfilForm(TestCase):
             if chave == 'foto':
                 updated_foto_filename = os.path.basename(updated_user.foto.name)
 
-                self.assertEquals(updated_foto_filename, 'foto.jpg')
+                self.assertEquals(updated_foto_filename, 'win_test_profile_image.jpg')
 
-                foto_teste = r'C:\Users\Rafael\PycharmProjects\WINecommerce\profiles_img\foto.jpg'
+                foto_teste = r'C:\Users\Rafael\PycharmProjects\WINecommerce\profiles_img\win_test_profile_image.jpg'
                 if os.path.exists(foto_teste):
                     os.remove(foto_teste)
             else:
