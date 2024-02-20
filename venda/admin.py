@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from .models import *
 
 # Register your models here.
@@ -47,3 +48,13 @@ class CarrinhoAdmin(admin.ModelAdmin):
 @admin.register(ItemCarrinho)
 class ItemCarrinhoAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'user')
+
+
+@admin.register(Usuario)
+class CustomUserAdmin(UserAdmin):
+    list_display = ('username', 'email', 'cpf', 'cep', 'foto')
+    fieldsets = UserAdmin.fieldsets + (
+        ('Informações Adicionais', {
+            'fields': ('cpf', 'cep', 'foto')
+        }),
+    )

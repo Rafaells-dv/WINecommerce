@@ -6,8 +6,8 @@ from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
     email = models.EmailField()
-    cpf = models.IntegerField(default=0)
-    cep = models.IntegerField(default=0)
+    cpf = models.IntegerField()
+    cep = models.IntegerField()
     foto = models.ImageField(default='profiles_img/perfil.png', upload_to="profiles_img/")
 
     def get_absolute_url(self):

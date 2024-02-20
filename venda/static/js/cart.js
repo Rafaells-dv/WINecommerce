@@ -1,8 +1,8 @@
 $(".cart-btn").on("click", function() {
-    var id_produto = $(this).val();
-    var key = $(this).text();
-    var url = '';
-    
+    let id_produto = $(this).val();
+    let key = $(this).text();
+    let url = '';
+
     switch (key) {
         case "+":
         case "Comprar":
@@ -18,7 +18,7 @@ $(".cart-btn").on("click", function() {
             break;
     }
 
-    var data = { id: id_produto };
+    let data = {id: id_produto};
 
     $.ajax({
         url: url,
