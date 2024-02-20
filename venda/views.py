@@ -6,20 +6,7 @@ from efipay import EfiPay
 from venda.credentials.credentials import *
 import json
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponse
-
-
-# Create your views here.
-def carrinho(request):
-    carrinho = None
-    itenscarrinho = []
-
-    if request.user.is_authenticated:
-        carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
-        itenscarrinho = carrinho.itenscarrinho.all()
-
-    context = {"carrinho": carrinho, "itens": itenscarrinho}
-    return render(request, "venda/carrinho.html", context)
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 
 
 def index(request):
@@ -28,8 +15,37 @@ def index(request):
     return render(request, "index.html", context)
 
 
+def carrinho(request):
+    endereco = request.session.get('endereco')
+
+    carrinho = None
+    itenscarrinho = []
+
+    if request.user.is_authenticated:
+        carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
+        itenscarrinho = carrinho.itenscarrinho.all()
+
+    context = {"carrinho": carrinho, "itens": itenscarrinho, 'endereco': endereco}
+    return render(request, "venda/carrinho.html", context)
+
+
 def perfil(request):
-    return render(request, "venda/perfil.html")
+    endereco = request.session.get('endereco')
+
+    return render(request, "venda/perfil.html", {'endereco': endereco})
+
+
+def endereco_json(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        endereco = data.get('endereco')
+
+        # Armazena os dados na sessão do usuário
+        request.session['endereco'] = endereco
+
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'error': 'Método não permitido'}, status=405)
 
 
 def pagamento(request):

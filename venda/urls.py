@@ -15,4 +15,5 @@ urlpatterns = [
     path('perfil', views.perfil, name="perfil"),
     path('carrinho', views.carrinho, name="carrinho"),
     path('pagamento', views.pagamento, name="pagamento"),
+    path('endereco-json/', views.endereco_json, name='endereco-json'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

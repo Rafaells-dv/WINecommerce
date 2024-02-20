@@ -61,11 +61,13 @@
                                             <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
                                                 <p class="mb-0">Seu endereço:</p>
                                                 <div class="order-note">
-                                                    <form name="myForm" action="." method="GET">
+                                                    <form name="myForm" action="." method="POST">
                                                       <input type="text" name="inputbox" value="" placeholder="CEP">
                                                       <input type="button" name="button" value="Click" onClick="meuEndereco(this.form)">
                                                     </form>
-                                                    <p id="endereco-entrega"></p>
+                                                    {% if endereco %}
+                                                    <p id="endereco-entrega">{{ endereco }}</p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                             <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
