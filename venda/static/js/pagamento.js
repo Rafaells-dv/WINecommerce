@@ -1,17 +1,17 @@
 function copyPaste() {
-    let qrcode = document.getElementById('codigoQrcode').value;
+    let qrcode = $('#codigoQrcode').val();
 
-    if (!navigator.clipboard){
-    }
-    else {
-    navigator.clipboard.writeText(qrcode).then(
-        function(){
-            alert("yeah!"); // success
-        })
-      .catch(
-         function() {
-            alert("err"); // error
-      });
+    if (!navigator.clipboard) {
+        alert("Seu navegador não suporta a funcionalidade de cópia para a área de transferência. Por favor, copie manualmente.");
+    } else {
+        navigator.clipboard.writeText(qrcode).then(
+            function() {
+                alert("yeah!");
+            }).catch(
+            function() {
+                alert("err");
+            });
     }
 }
+
 

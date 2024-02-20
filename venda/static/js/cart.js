@@ -1,46 +1,37 @@
-let btns = document.querySelectorAll(".cart-btn")
-
-btns.forEach(btn=>{
-    btn.addEventListener("click", buttonsCarrinho)
-})
-
-function buttonsCarrinho(e){
-    let id_produto = e.target.value;
-    var key = this.innerText;
+$(".cart-btn").on("click", function() {
+    var id_produto = $(this).val();
+    var key = $(this).text();
     var url = '';
-    switch(key) {
+    
+    switch (key) {
         case "+":
-            url = '/add_to_carrinho'
-            break;
-
         case "Comprar":
-            url = '/add_to_carrinho'
+            url = '/add_to_carrinho';
             break;
 
         case "-":
-            url = '/remove_from_carrinho'
+            url = '/remove_from_carrinho';
             break;
 
         case "Remover":
-            url = '/delete_item_carrinho'
+            url = '/delete_item_carrinho';
             break;
-
     }
 
+    var data = { id: id_produto };
 
-    let data = {id:id_produto};
-
-    fetch(url, {
+    $.ajax({
+        url: url,
         method: "POST",
-        headers: {"Content-Type":"application/json", 'X-CSRFToken': csrftoken},
-        body: JSON.stringify(data)
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data)
-    })
-    .catch(error=>{
-        console.log(error)
-    })
-    location.reload()
-}
+        headers: { "Content-Type": "application/json", 'X-CSRFToken': csrftoken },
+        data: JSON.stringify(data),
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+
+    location.reload();
+});
