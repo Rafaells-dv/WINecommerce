@@ -7,7 +7,7 @@ from venda.credentials.credentials import *
 import json
 from django.db.models import Q
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
-
+import requests
 
 def index(request):
     produtos = Produto.objects.filter(categoria__icontains="c")
@@ -114,6 +114,7 @@ def add_to_carrinho(request):
     else:
         return JsonResponse({"error": "User is not authenticated."}, status=401)
 
+
 def remove_from_carrinho(request):
     data = json.loads(request.body)
     id_produto = data["id"]
@@ -147,6 +148,13 @@ def delete_item_carrinho(request):
     else:
         return JsonResponse({"error": "User is not authenticated."}, status=401)
 
+
+def obter_endereco_por_cep(cep):
+    url = f'https://viacep.com.br/ws/{cep}/json/'
+    response = requests.get(url)
+    return response.json()
+
+
 class GearListView(ListView):
     model = Produto
     paginate_by = 4
@@ -178,7 +186,25 @@ class CadastroView(FormView):
     template_name = "registration/cadastro.html"
 
     def form_valid(self, form):
-        form.save()
+        instance = form.save(commit=False)
+
+        cep = form.cleaned_data['cep']
+        numero = form.cleaned_data['numero']
+        endereco = obter_endereco_por_cep(cep)
+
+        endereco_obj, created = Endereco.objects.get_or_create(
+            logradouro=endereco['logradouro'],
+            numero=numero,
+            bairro=endereco['bairro'],
+            cidade=endereco['localidade'],
+            estado=endereco['uf']
+        )
+
+        # Associar o endereço ao usuário antes de salvar
+        endereco_obj.save()
+        instance.endereco = endereco_obj
+        instance.save()
+
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -188,7 +214,27 @@ class CadastroView(FormView):
 class EditarPerfilView(UpdateView):
     model = Usuario
     template_name = "registration/editarperfil.html"
-    fields = ['username', 'email', 'cpf', 'cep', 'foto']
+    fields = ['username', 'email', 'cpf', 'numero', 'cep', 'foto']
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+
+        cep = form.cleaned_data['cep']
+        endereco = obter_endereco_por_cep(cep)
+
+        endereco_obj, created = Endereco.objects.get_or_create(
+            logradouro=endereco['logradouro'],
+            bairro=endereco['bairro'],
+            localidade=endereco['localidade'],
+            uf=endereco['uf']
+        )
+
+        # Associar o endereço ao usuário antes de salvar
+        endereco_obj.save()
+        instance.endereco = endereco_obj
+        instance.save()
+
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('perfil')

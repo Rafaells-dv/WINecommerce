@@ -59,17 +59,24 @@
                                     <div class="cart-body">
                                         <div class="row">
                                             <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
-                                                <p class="mb-0">Seu endereço:</p>
-                                                <div class="order-note">
-                                                    <form name="myForm" action="." method="POST">
-                                                      <input type="text" name="inputbox" value="" placeholder="CEP">
-                                                      <input type="button" name="button" value="Click" onClick="meuEndereco(this.form)">
-                                                    </form>
-                                                    {% if endereco %}
-                                                    <p id="endereco-entrega">{{ endereco }}</p>
-                                                    {% endif %}
-                                                </div>
+                                                {% if not user.is_authenticated %}
+                                                    <p class="mb-0">Seu endereço:</p>
+                                                    <div class="order-note">
+                                                        <form name="myForm" action="." method="POST">
+                                                            <label>
+                                                                <input type="text" name="inputbox" value="" placeholder="CEP">
+                                                            </label>
+                                                            <input type="button" name="button" value="Click" onClick="meuEndereco(this.form)">
+                                                        </form>
+                                                        {% if endereco %}
+                                                        <p id="endereco-entrega">{{ endereco }}</p>
+                                                        {% endif %}
+                                                    </div>
+                                                {% else %}
+                                                    <p class="mb-0">Seu endereço: {{user.endereco.logradouro}}-{{user.numero}}/{{user.endereco.uf}}</p>
+                                                {% endif %}
                                             </div>
+
                                             <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
                                                 <div class="order-total table-responsive ">
                                                     <table class="table table-borderless text-right">

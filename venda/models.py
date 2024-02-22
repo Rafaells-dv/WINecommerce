@@ -4,11 +4,21 @@ import uuid
 from django.contrib.auth.models import AbstractUser
 
 
+class Endereco(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID')
+    uf = models.CharField(max_length=100, default='')
+    localidade = models.CharField(max_length=100, default='')
+    logradouro = models.CharField(max_length=100, default='')
+    bairro = models.CharField(max_length=100, default='')
+
+
 class Usuario(AbstractUser):
     email = models.EmailField()
-    cpf = models.IntegerField()
-    cep = models.IntegerField()
+    cpf = models.IntegerField(null=True, blank=True)
+    cep = models.IntegerField(null=True, blank=True)
     foto = models.ImageField(default='profiles_img/perfil.png', upload_to="profiles_img/")
+    endereco = models.OneToOneField(Endereco, on_delete=models.CASCADE, null=True)
+    numero = models.IntegerField(null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('editarperfil', args=[str(self.id)])

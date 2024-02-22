@@ -88,7 +88,8 @@ class TestEditarPerfilForm(TestCase):
             'username': 'test2',
             'email': 'test2@gmail.com',
             'cpf': 234253235,
-            'cep': 10987654321,
+            'cep': 83701380,
+            'numero': 1,
             'foto': photo,
         }
 

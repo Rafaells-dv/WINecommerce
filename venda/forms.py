@@ -9,12 +9,12 @@ class CriarContaForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(CriarContaForm, self).__init__(*args, **kwargs)
 
-        for fieldname in ['username', 'email', 'cpf', 'cep', 'password1', 'password2']:
+        for fieldname in ['username', 'email', 'cpf', 'cep', 'numero', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
 
     class Meta:
         model = Usuario
-        fields = ('username', 'email', 'cpf', 'cep', 'password1', 'password2')
+        fields = ('username', 'email', 'cpf', 'cep', 'numero', 'password1', 'password2')
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -29,7 +29,7 @@ class EditarPerfilForm(ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('username','email','cep','foto')
+        fields = ('username', 'email', 'cpf', 'numero', 'cep', 'foto')
 
     def clean_email(self):
         email = self.cleaned_data['email']
