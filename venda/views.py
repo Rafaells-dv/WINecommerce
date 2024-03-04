@@ -6,8 +6,9 @@ from efipay import EfiPay
 from venda.credentials.credentials import *
 import json
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponse
 import requests
+
 
 def index(request):
     produtos = Produto.objects.filter(categoria__icontains="c")
@@ -131,6 +132,7 @@ def remove_from_carrinho(request):
             return JsonResponse({"message": "Can´t remove, just one unit in the cart."})
     else:
         return JsonResponse({"error": "User is not authenticated."}, status=401)
+
 
 def delete_item_carrinho(request):
     data = json.loads(request.body)
