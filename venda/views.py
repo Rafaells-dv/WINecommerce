@@ -50,7 +50,7 @@ def endereco_json(request):
 
 
 def pagamento(request):
-
+    print(credentials_p)
     if request.user.is_authenticated:
         carrinho, created = Carrinho.objects.get_or_create(user=request.user, completed=False)
 
